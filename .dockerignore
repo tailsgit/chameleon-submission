@@ -1,0 +1,20 @@
+# Only what the Dockerfile copies is needed; keep labels, Crello-derived results, weights and local data out
+# of the build context.
+.git
+.venv
+**/__pycache__
+eval/results
+eval/tests
+output/*
+cr-renderer
+*.onnx
+data
+# generator and critic code (opt-in with GEN_ON=1 / CHAMELEON_CRITIC=1, not part of the submission) and its tooling
+engine/gen_candidates.py
+engine/critic_score.py
+engine/search.py
+eval/gen_*.py
+eval/critic_cv.py
+eval/diagnose_pages.py
+eval/path_budget_eval.py
+eval/scorer_pair_evidence.py

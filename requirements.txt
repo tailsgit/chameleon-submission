@@ -1,0 +1,4 @@
+Pillow>=10.0
+git+https://github.com/CyberAgentAILab/cr-renderer
+jsonschema>=4.18
+ortools==9.12.4544
