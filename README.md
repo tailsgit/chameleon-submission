@@ -300,6 +300,30 @@ The rules leave some points open. Where the organisers have not answered, we dec
 
 ## Known limitations
 
+These are the weaknesses we measured or saw in our own tests. Most come from two things: the
+engine does not detect every relationship between elements, and the rules leave little room on
+extreme formats (images cannot be cropped, and only position, size and font size may change).
+
+- **Grouping.** Elements that belong together can occasionally be pulled apart: a text group (a
+  headline and its tagline, a logo and its name) can be spread out, and a logo or photo can land
+  off the panel that held it. Some relationships are not detected (for example a dark panel
+  tinting a photo, a long pill read as a backdrop, or a text logo given the headline role); others
+  are detected but not enforced after layout.
+- **Extreme formats.** Very wide or very tall canvases (e.g. 728x90, 160x600) are the weakest.
+  Images cannot be cropped, so a portrait photo can shrink to a small thumbnail and leave empty
+  space, and dense text can shrink to the readable minimum and look cramped.
+- **Large letter spacing.** Letter spacing is kept as in the source (only position, size and font
+  size change), so text with very large spacing on a narrow canvas can overflow its box, or run
+  off the canvas when turned 90 degrees: 1 of 597 development cases, and 19 of 3,383 runs in a
+  sweep of 202 designs over 17 target sizes, 12 of them at 160x600.
+- **Hairline images.** An image only a few pixels thick (a rule line) that would scale below 1 px
+  cannot stay at least 1 px thick, on the canvas and within the 5% aspect rule at once: 2 of 597
+  development cases fail the hard rules for this reason.
+- **Evaluation.** Layout choices were evaluated by a single rater on a small labelled set, so
+  small differences between versions are within noise.
+
+In more detail:
+
 - **Very wide or very tall canvases** (aspect 2.5:1 or more, or 1:2.4 and narrower, e.g. 728x90,
   1584x396, 160x600). There is little room to keep every element large and readable: text can get
   small, a photo can be squeezed into a corner, and grouped elements may be split apart. These are
